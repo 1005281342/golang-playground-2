@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker pull soulteary/golang-playground:web-1.19.0
-docker pull soulteary/golang-playground:sandbox-1.19.0
-docker pull soulteary/golang-playground:actuator-1.19.0
+docker pull oyjx0525/golang-playground:web-1.13.15
+docker pull oyjx0525/golang-playground:sandbox-1.13.15
+docker pull oyjx0525/golang-playground:actuator-1.13.15
 docker pull memcached:1.6.15-alpine

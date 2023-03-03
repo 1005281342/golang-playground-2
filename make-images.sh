@@ -1,5 +1,5 @@
 #!/bin/bash
 
-docker build -t soulteary/golang-playground:web-1.19.0 -f docker/Dockerfile.web .
-docker build -t soulteary/golang-playground:sandbox-1.19.0 -f docker/Dockerfile.sandbox .
-docker build -t soulteary/golang-playground:actuator-1.19.0 -f docker/Dockerfile.actuator .
+docker build -t oyjx0525/golang-playground:web-1.13.15 -f docker/Dockerfile.web .
+docker build -t oyjx0525/golang-playground:sandbox-1.13.15 -f docker/Dockerfile.sandbox .
+docker build -t oyjx0525/golang-playground:actuator-1.13.15 -f docker/Dockerfile.actuator .

@@ -5,11 +5,7 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
-	"os"
-	"path/filepath"
-	"sort"
 	"strings"
 	"time"
 )
@@ -49,57 +45,62 @@ func (h *examplesHandler) hello() string {
 //
 // modtime is used for content caching headers.
 func newExamplesHandler(modtime time.Time) (*examplesHandler, error) {
-	const dir = "examples"
-	entries, err := os.ReadDir(dir)
-	if err != nil {
-		return nil, err
-	}
+	//const dir = "examples"
+	//entries, err := os.ReadDir(dir)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//
+	//var examples []example
+	//for _, entry := range entries {
+	//	name := entry.Name()
+	//
+	//	// Read examples ending in .txt
+	//	prefix := "" // if non-empty, this is a relevant example file
+	//	if strings.HasSuffix(name, ".txt") {
+	//		prefix = strings.TrimSuffix(name, ".txt")
+	//	}
+	//
+	//	if prefix == "" {
+	//		continue
+	//	}
+	//
+	//	data, err := os.ReadFile(filepath.Join(dir, name))
+	//	if err != nil {
+	//		return nil, err
+	//	}
+	//	content := string(data)
+	//
+	//	// Extract the magic "// Title:" comment specifying the example's title.
+	//	nl := strings.IndexByte(content, '\n')
+	//	const titlePrefix = "// Title:"
+	//	if nl == -1 || !strings.HasPrefix(content, titlePrefix) {
+	//		return nil, fmt.Errorf("malformed example for %q: must start with a title line beginning %q", name, titlePrefix)
+	//	}
+	//	title := strings.TrimPrefix(content[:nl], titlePrefix)
+	//	title = strings.TrimSpace(title)
+	//
+	//	examples = append(examples, example{
+	//		Title:   title,
+	//		Path:    name,
+	//		Content: content[nl+1:],
+	//	})
+	//}
+	//
+	//// Sort by title, before prepending the hello example (we always want Hello
+	//// to be first).
+	//sort.Slice(examples, func(i, j int) bool {
+	//	return examples[i].Title < examples[j].Title
+	//})
+	//
+	//examples = append([]example{
+	//	{"Hello, 世界！", "hello.txt", hello},
+	//}, examples...)
 
-	var examples []example
-	for _, entry := range entries {
-		name := entry.Name()
-
-		// Read examples ending in .txt
-		prefix := "" // if non-empty, this is a relevant example file
-		if strings.HasSuffix(name, ".txt") {
-			prefix = strings.TrimSuffix(name, ".txt")
-		}
-
-		if prefix == "" {
-			continue
-		}
-
-		data, err := os.ReadFile(filepath.Join(dir, name))
-		if err != nil {
-			return nil, err
-		}
-		content := string(data)
-
-		// Extract the magic "// Title:" comment specifying the example's title.
-		nl := strings.IndexByte(content, '\n')
-		const titlePrefix = "// Title:"
-		if nl == -1 || !strings.HasPrefix(content, titlePrefix) {
-			return nil, fmt.Errorf("malformed example for %q: must start with a title line beginning %q", name, titlePrefix)
-		}
-		title := strings.TrimPrefix(content[:nl], titlePrefix)
-		title = strings.TrimSpace(title)
-
-		examples = append(examples, example{
-			Title:   title,
-			Path:    name,
-			Content: content[nl+1:],
-		})
-	}
-
-	// Sort by title, before prepending the hello example (we always want Hello
-	// to be first).
-	sort.Slice(examples, func(i, j int) bool {
-		return examples[i].Title < examples[j].Title
-	})
-
-	examples = append([]example{
+	var examples = []example{
 		{"Hello, 世界！", "hello.txt", hello},
-	}, examples...)
+	}
+
 	return &examplesHandler{
 		modtime:  modtime,
 		examples: examples,

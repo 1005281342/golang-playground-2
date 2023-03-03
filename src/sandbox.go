@@ -469,8 +469,8 @@ func sandboxBuild(ctx context.Context, tmpDir string, in []byte, vet bool) (br *
 	cmd.Env = append(cmd.Env, "CGO_ENABLED=0")
 	// Create a GOPATH just for modules to be downloaded
 	// into GOPATH/pkg/mod.
-	cmd.Args = append(cmd.Args, "-modcacherw")
-	cmd.Args = append(cmd.Args, "-mod=mod")
+	//cmd.Args = append(cmd.Args, "-modcacherw")
+	cmd.Args = append(cmd.Args, "-mod=")
 	br.goPath, err = ioutil.TempDir("", "gopath")
 	if err != nil {
 		log.Printf("error creating temp directory: %v", err)
